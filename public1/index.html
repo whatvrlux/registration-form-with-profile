@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">     >
+    <title>registration form</title>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" async defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h2>Login here!</h2>
+
+            <div class="form-el">
+                <form action="">
+                    <!--<label for="name">Full Name</label><br>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>-->
+
+                    <label for="phone">Phone or email</label><br>
+                    <input type="text" id="login" name="login" required><br><br>
+
+
+                   
+                    <label for="password">Password</label><br>
+                    <input type="password" id="password" name="password" placeholder="" required><br><br> <!-- (＿ ＿*) Z z z -->
+
+                    <!--<label for="confirmPassword">Repeat password</label><br>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="・ヾ(。＞＜)シ" required><br><br>-->
+                    <!--<label for="">DOB</label><br>
+                    <input type="date"><br><br>-->
+
+                    
+                    <input class="submit" type="submit" value="Login">
+                    <p>Already dont have account? <a href="registration.html">Registration</a></p>
+
+                     <p id="loginMessage"></p>
+
+                </form>
+
+               
+
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                <script>
+                    document.getElementById('loginForm').addEventListener('submit', function(event) {
+                        event.preventDefault();
+            
+                        const login = document.getElementById('login').value;
+                        const password = document.getElementById('password').value;
+                        const captchaResponse = grecaptcha.getResponse(); // Получаем ответ от SmartCaptcha
+                        const messageEl = document.getElementById('loginMessage');
+            
+                        // Проверка наличия ответа от капчи
+                        if (captchaResponse.length === 0) {
+                            messageEl.innerText = 'Пожалуйста, подтвердите, что вы не робот.';
+                            return;
+                        }
+            
+                         
+                        const loginSuccessful = true; // Здесь должна быть реальная проверка
+            
+                        if (loginSuccessful) {
+                            messageEl.innerText = 'Авторизация успешна!';
+                            // Перенаправление на страницу профиля, например, window.location.href = 'profile.html';
+                        } else {
+                            messageEl.innerText = 'Неверный телефон или почта, или пароль.';
+                        }
+                    });
+
+                    document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем отправку формы для обработки валидации
+
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('password').value;
+            const captchaResponse = grecaptcha.getResponse();
+            const messageEl = document.getElementById('loginMessage');
+
+            // Проверка наличия ответа от капчи
+            if (captchaResponse.length === 0) {
+                messageEl.innerText = 'Пожалуйста, подтвердите, что вы не робот.';
+                return;
+            }
+
+            // AJAX-запрос для проверки пользователя
+            fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    login: login,
+                    password: password,
+                    captcha: captchaResponse // Отправляем ответ капчи
+                }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Сетевое соединение не выполнено');
+                }
+                return response.json(); // Обрабатываем ответ в формате JSON
+            })
+            .then(data => {
+                // Обработка ответа от сервера
+                if (data.success) {
+                    messageEl.innerText = 'Авторизация успешна!'; 
+                    // Перенаправление на страницу профиля
+                    window.location.href = 'profile.html';
+                } else {
+                    messageEl.innerText = data.message || 'Неверный телефон или почта, или пароль.';
+                }
+            })
+            .catch(error => {
+                messageEl.innerText = 'Произошла ошибка. Пожалуйста, попробуйте еще раз.';
+                console.error('Ошибка:', error);
+            });
+        });
+                </script>       
+            </div>
+        </div>
+    </div>
+</body>
+</html>

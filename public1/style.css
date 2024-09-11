@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/016/348/270/small_2x/tunnel-of-concentric-hearts-romantic-cute-background-pink-aesthetic-hearts-backdrop-illustration-vector.jpg);
+   background-size: cover;
+ 
+}
+
+.content {
+    height: 50vh;
+    width: 50vh;
+    border-radius: 40px;
+    backdrop-filter: blur(40px);
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0 0 40px rgba(207, 207, 207, 0.315);
+    background-color: #ffffff46;
+}
+
+.container {
+    color: aliceblue;
+    text-align: center;
+    margin-top: 1em;
+    font-weight: 400;
+}
+
+.container h2 {
+    color: aliceblue;
+    text-align: center;
+    margin-top: 1em;
+    font-weight: 700;
+}
+
+.form-el {
+    margin-top: 2em;
+    /*margin-left: 2em;*/
+
+}
+
+input {
+    border: none;
+    padding-top: 0.3em; 
+    padding-bottom: 0.3em;
+    padding-left: 0.4em;
+    background-color: rgba(255, 255, 255, 0.185);
+    backdrop-filter: blur(30px);
+    margin-top: 0.6em;
+    border-radius: 40px;
+
+}
+
+label {
+    color: rgb (8, 63, 1);
+    font-weight: 540;
+    font-family: cursive;
+    
+
+}
+
+.submit {
+padding-left: 2em;
+padding-right: 2em;
+padding-top: 0.6em;
+padding-bottom: 0.6em;
+background-color: #f48fb1;
+color: aliceblue;
+font-weight: 500;
+font-family: Arial, Arial, Helvetica, sans-serif;
+font-size: 0.8em;
+cursor: pointer;
+border-radius: 40px;
+}
+
+.content p {    
+   /* margin-left: 2em;*/
+    margin-top: 2em;
+    color: rgb (0, 0, 0);
+    font-weight: 700;
+    text-align: center;
+
+}
+
+.content a {
+    color: #f48fb1;
+    text-decoration: none;
+}
